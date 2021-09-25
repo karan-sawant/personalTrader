@@ -34,7 +34,7 @@ let cancelOrder = async symbol => {
         _config.url = `https://api.binance.com/api/v3/openOrders?${data}&signature=${signature}`;
         await axios.request(_config);
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -49,7 +49,7 @@ let executeOrder = async (symbol, side, type, timeInForce, quantity, price) => {
         let r = await axios.request(_config);
         return r.data;
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -86,7 +86,7 @@ let buyOrder = async coin =>{
             db_orderBook.updateOne({exchange: "binance"}, {$set: update}, {upsert: true, strict: false}).exec();
         }
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
@@ -108,7 +108,7 @@ let sellOrder = async coin =>{
             }
         }
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
