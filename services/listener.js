@@ -11,5 +11,5 @@ let startListner = async () => {
     });
 }
 
-// setTimeout(()=>{trader.binance.placeOrder({coin: "cardano", text: "Buy"})}, 10000)
+setTimeout(()=>{trader.binance.placeOrder({coin: "cardano", text: "Buy"})}, 10000)
 module.exports = { startListner }

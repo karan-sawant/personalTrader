@@ -55,7 +55,7 @@ let executeOrder = async (symbol, side, type, timeInForce, quantity, price) => {
 
 let buyOrder = async coin =>{
     try {
-        let _id = tradingCoins.binance[coin].id;
+        let _id = tradingCoins.binance[coin][0];
         let price = __tracker[_id].price > __tracker[_id].ask ? __tracker[_id].ask : __tracker[_id].price;
         let price_s = price.toString();
         let stop_price = parseFloat((price*0.99).toFixed(price_s.length - price_s.indexOf(".") -1));
@@ -92,7 +92,7 @@ let buyOrder = async coin =>{
 
 let sellOrder = async coin =>{
     try {
-        let _id = tradingCoins.binance[coin].id;
+        let _id = tradingCoins.binance[coin][0];
         let price = __tracker[_id].price > __tracker[_id].ask ? __tracker[_id].ask : __tracker[_id].price;
         let stop_price = price*0.99;
         if(coin in __orderBook.binance){
@@ -113,6 +113,7 @@ let sellOrder = async coin =>{
 }
 
 let placeOrder = async data => {
+    // Fetch user details
     if(Object.keys(tradingCoins.binance).includes(data.coin)){
         // await cancelOrder(tradingCoins.binance[data.coin].id);
         // await walletBallance(tradingCoins.binance[data.coin].id, data.text);
